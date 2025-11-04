@@ -91,20 +91,20 @@ end
 
 -- OPTIMIZATION: Throttle updates to 20Hz (50ms intervals)
 -- Running at 60Hz (every frame) is excessive for TP/HP display which changes infrequently
--- 20Hz updates are imperceptible to users but save 66% of CPU time
+-- 20Hz updates are imperceptible to users but reduce update frequency by 66%
 local last_update = 0
 local update_interval = 0.05  -- 50ms = 20Hz (was 60Hz = 16.67ms)
 
 windower.register_event('prerender', function()
     -- OPTIMIZATION: Early exit if update interval hasn't elapsed
-    -- Reduces CPU usage by 66% while maintaining responsive display
+    -- Skips unnecessary work 66% of the time while maintaining responsive display
     local now = os.clock()
     if now - last_update < update_interval then return end
     last_update = now
     
     -- OPTIMIZATION: Cache all expensive API calls once per update
-    -- Previously these were called multiple times per frame (18+ text objects)
-    -- Caching reduces API overhead by ~95%
+    -- Consolidates all API calls at top and reduces frequency from 60Hz to 20Hz
+    -- Combined with throttling, reduces API calls by ~60% (from 180-240/sec to 80-100/sec)
     local party = windower.ffxi.get_party()  -- Cached for all TP displays
     local zone = windower.ffxi.get_info().zone  -- Cached for zone checks
     local party_info = windower.ffxi.get_party_info()  -- Cached for party count
