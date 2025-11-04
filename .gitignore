@@ -1,0 +1,31 @@
+# Optimization and documentation files
+OPTIMIZATION_REPORT.md
+OPTIMIZATIONS_APPLIED.md
+OPTIMIZATION_SUMMARY.md
+OPTIMIZATION_*.md
+DOCS_*.md
+DOCUMENTATION_*.md
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Git files
+.git/
