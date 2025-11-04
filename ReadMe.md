@@ -464,7 +464,7 @@ Let's trace through one complete execution:
 
 ### The Optimized Code
 
-The optimized version (lines 98-160 in your repository):
+The optimized version (lines 98-160):
 
 ```lua
 -- OPTIMIZATION: Throttle updates to 20Hz (50ms intervals)
